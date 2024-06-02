@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        div {
+            background-color: #d7b8f4;
+            color: #231b3f;
+            padding: 20px;
+        }
+
+        hr {
+            height: 1px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            background-color: rgb(186, 28, 210);
+            border-style: none;
+        }
+
+        button {
+            margin-right: 9px;
+            padding: 4px 8px;
+            border-style: none;
+            border-radius: 6px;
+            font-weight: 500;
+            font-family: Georgia, Times, 'Times New Roman', serif;
+            background-color: rgb(252, 241, 226);
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+
+        <h2>Background Colour Changer</h2>
+        <hr>
+        <h4>The Background Colour is &nbsp -- &nbsp White</h4>
+    </div>
+    <div>
+
+        <button id="btn1">Start</button>
+        <button id="btn2">Stop</button>
+        <button id="btn3">Start Again</button>
+    </div>
+
+</body>
+<script>
+
+
+    const hp = document.querySelector('h2')
+    const hpp = document.querySelector('h4')
+    const bdy = document.querySelector('body')
+    const btn1 = document.getElementById('btn1')
+    const btn2 = document.getElementById('btn2')
+    const btn3 = document.getElementById('btn3')
+    let clr;
+
+    const getclr = function () {
+        const str = "0123456789ABCDEF";
+        clr = "#";
+        for (let i = 0; i < 6; i++) {
+            clr += str[Math.floor(Math.random() * 16)];
+        }
+        return clr;
+    }
+    let ntr;
+    let num = 0;
+    console.log(getclr())
+
+    btn1.addEventListener('click', () => {
+
+        ntr = setInterval(() => {
+            bdy.style.backgroundColor = `${getclr()}`
+            hp.innerHTML = `This colour number is ${num}`
+            hpp.innerHTML = `The bgColour is -> ${getclr()}`
+            num += 1;
+
+        }, 1000);
+    })
+
+    btn3.addEventListener('click', () => {
+
+        num = 0;
+        ntr = setInterval(() => {
+            bdy.style.backgroundColor = `${getclr()}`
+            hp.innerHTML = `This colour number is ${num}`
+            hpp.innerHTML = `The bgColour is -> ${getclr()}`
+            num += 1;
+
+        }, 1000);
+
+
+    })
+
+    btn2.addEventListener('click', () => {
+
+        clearInterval(ntr);
+        ntr = "";
+    })
+
+
+
+
+</script>
+
+</html>
